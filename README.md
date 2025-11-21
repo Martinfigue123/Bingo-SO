@@ -5,4 +5,4 @@ Instrucciones para ejecutar el codigo:
 4. En otra terminal volver a ejecutar client.py
 5. Ejecutar en el segundo client JOIN nombre
 
-Importante, gana el jugador al completar el una fila o columna
+Importante, gana el jugador al completar una fila o columna
