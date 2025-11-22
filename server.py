@@ -1,5 +1,5 @@
 import sys, socket, threading, random, time
-from utils import send_json, recv_json_lines, new_id, now_ts
+from utils import send_json, recv_json_lines, new_id, now_ts, setup_json_logger, log_event
 
 class ClientCtx:
     def __init__(self, sock, addr):
@@ -26,18 +26,23 @@ class BingoServer:
         # socket del servidor desde el inicio
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        # Logger JSON (NDJSON)
+        self.logger = setup_json_logger("server", "logs/server.ndjson")
 
     def start(self):
         self.server.bind((self.host, self.port))
         self.server.listen()
         print(f"[srv] listening on {self.host}:{self.port} game_id={self.game_id}")
         print(f"[srv] waiting for up to {self.max_players} players...")
+        log_event(self.logger, ev="server_start", host=self.host, port=self.port,
+                  game_id=self.game_id, max_players=self.max_players)
         # Hilo que reintenta mensajes críticos sin ACK
         threading.Thread(target=self._ack_monitor, daemon=True).start()
         while True:
             c, a = self.server.accept()
             ctx = ClientCtx(c, a)
             with self.lock: self.clients.append(ctx)
+            log_event(self.logger, ev="client_accept", addr=str(a))
             threading.Thread(target=self._handle_client, args=(ctx,), daemon=True).start()
 
     def _handle_client(self, ctx: ClientCtx):
@@ -53,6 +58,7 @@ class BingoServer:
         finally:
             ctx.alive = False
             ctx.sock.close()
+            log_event(self.logger, ev="client_closed", addr=str(ctx.addr), pid=ctx.player_id)            
 
     # Fiabilidad: envío y ACK 
     def _send(self, ctx: ClientCtx, typ: str, payload: dict, *, critical: bool):
@@ -70,6 +76,8 @@ class BingoServer:
             send_json(ctx.sock, m)
             if critical:
                 ctx.awaiting_acks[m["msg_id"]] = [m, time.time(), 0]
+        log_event(self.logger, ev="tx", to=str(ctx.addr), pid=ctx.player_id,
+                  type=typ, critical=critical, msg_id=m["msg_id"], seq=m["seq"], payload=payload)
         return m
 
     def _broadcast(self, typ: str, payload: dict, *, critical: bool):
@@ -98,6 +106,8 @@ class BingoServer:
                     if now - ts >= ACK_TIMEOUT:
                         if retries >= ACK_RETRIES:
                             print(f"[srv] drop {c.addr}: no ACK for {m['type']}")
+                            log_event(self.logger, ev="ack_drop", addr=str(c.addr),
+                                      type=m["type"], msg_id=m["msg_id"])
                             c.alive = False
                             try: c.sock.shutdown(socket.SHUT_RDWR)
                             except: pass
@@ -112,6 +122,8 @@ class BingoServer:
                         if not m: continue
                         send_json(c.sock, m)               # reenvía MISMO msg_id
                         c.awaiting_acks[mid] = [m, now, retries+1]
+                        log_event(self.logger, ev="ack_retry", addr=str(c.addr),
+                                  type=m["type"], msg_id=m["msg_id"], attempt=retries+1)
 
     def _on_message(self, ctx: ClientCtx, m: dict):
         typ = m.get("type")
@@ -123,6 +135,7 @@ class BingoServer:
                        {"max_players": self.max_players, "win_patterns":["ROW","COL","DIAG"]},
                        critical=False)
             print(f"[srv] client -> HELLO! {ctx.addr}")
+            log_event(self.logger, ev="rx", from_=str(ctx.addr), type="HELLO")
 
         elif typ == "CREATE":
             # **Auto-JOIN del moderador** (creador de la sala pasa a ser jugador)
@@ -139,6 +152,8 @@ class BingoServer:
                             for c in self.clients if c.player_id]
             }, critical=True)  # requiere ACK
             print(f"[srv] game created by {ctx.nickname} ({ctx.addr}) and joined!")
+            log_event(self.logger, ev="create_join", nick=ctx.nickname, addr=str(ctx.addr),
+                      pid=ctx.player_id)
 
         elif typ == "JOIN":
             # asigna identidad si viene directo a JOIN (sin CREATE)
@@ -151,18 +166,23 @@ class BingoServer:
                             for c in self.clients if c.player_id]
             }, critical=True)  # requiere ACK
             print(f"[srv] player joined: {ctx.nickname} ({ctx.addr})")
+            log_event(self.logger, ev="join", nick=ctx.nickname, addr=str(ctx.addr),
+                      pid=ctx.player_id)
             
             # AUTOSTART: si ya están todos los cupos, arrancar
             with self.lock:
                 current = len([c for c in self.clients if c.player_id and c.alive])
             if self.state == "LOBBY" and current >= self.max_players:
-                print(f"[srv] max players reached ({current}), starting game...")
+                print(f"[srv] max players reached ({current}), starting game in 3 seconds...")
+                log_event(self.logger, ev="autostart_trigger", players=current)
+                time.sleep(3)
                 self._start_game()
 
         elif typ == "ACK":
             mid = payload.get("msg_id_ref")
             if mid:
                 ctx.awaiting_acks.pop(mid, None)
+                log_event(self.logger, ev="ack_rx", addr=str(ctx.addr), msg_id=mid)
 
         elif typ == "START":
             # Inicio explícito por moderador: START + CARD (+ ACK)
@@ -170,6 +190,7 @@ class BingoServer:
                 self._send(ctx, "ERROR", {"code":"BAD_STATE","detail":"No en LOBBY"}, critical=False)
                 return
             print(f"[srv] game starting by moderator {ctx.nickname} ({ctx.addr})")
+            log_event(self.logger, ev="start_cmd", nick=ctx.nickname, addr=str(ctx.addr))            
             self._start_game()
 
         elif typ == "BINGO":
@@ -177,6 +198,8 @@ class BingoServer:
                 return
             # Validación mínima: aceptamos el primero que llegue
             print(f"[srv] BINGO claimed by {ctx.nickname} ({ctx.addr})")
+            log_event(self.logger, ev="bingo_claim", nick=ctx.nickname, addr=str(ctx.addr),
+                      pid=ctx.player_id)
             card = self.cards.get(ctx.player_id)
             if not card or not self.validate_win(card):
                 self._send(ctx, "ERROR", {"code":"INVALID_BINGO","detail":"Cartón inválido"}, critical=False)
@@ -191,6 +214,7 @@ class BingoServer:
     def _draw_loop(self):
         """Saca números cada 1 segundo"""
         print("[GAME LOOP] Comenzando sorteo...")
+        log_event(self.logger, ev="draw_loop_start")
         bag = list(range(1,76))
         random.shuffle(bag)
         while self.state == "RUNNING" and bag:
@@ -201,6 +225,7 @@ class BingoServer:
             # `DRAW` es crítico y exige ACK (para no “dejar atrás” jugadores)
             self._broadcast("DRAW", {"value": n, "draw_n": self.draw_n}, critical=True)
             print(f"[GAME LOOP] Número sorteado: {n} (draw #{self.draw_n})")
+            log_event(self.logger, ev="draw", value=n, draw_n=self.draw_n)
             
     def _start_game(self):
         with self.lock:
@@ -209,6 +234,7 @@ class BingoServer:
             self.state = "RUNNING"
         # START (ACK)
         print(f"INICIANDO PARTIDA {self.game_id}!")
+        log_event(self.logger, ev="game_start", game_id=self.game_id)
         self._broadcast("START", {"seed": random.randint(1,10**9)}, critical=True)
         time.sleep(1)
         # Asignar cartas (ACK por cada CARD)
@@ -220,6 +246,7 @@ class BingoServer:
             matrix = [nums[i*5:(i+1)*5] for i in range(5)]
             self.cards[c.player_id] = matrix
             self._send(c, "CARD", {"matrix": matrix, "size":5, "range":[1,75]}, critical=True)
+            log_event(self.logger, ev="card_tx", to=str(c.addr), pid=c.player_id)
         # Arrancar loop de DRAW
         threading.Thread(target=self._draw_loop, daemon=True).start()
 

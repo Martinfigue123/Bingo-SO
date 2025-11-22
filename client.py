@@ -1,5 +1,5 @@
 import sys, json, socket, threading, time
-from utils import send_json, recv_json_lines, new_id, now_ts
+from utils import send_json, recv_json_lines, new_id, now_ts, setup_json_logger, log_event
 
 class BingoClient:
     def __init__(self, host, port, nickname):
@@ -13,6 +13,9 @@ class BingoClient:
         # self.draws keeps tuples (value, draw_n); drawn_numbers is a set de valores para comprobaciones rápidas
         self.draws = []
         self.drawn_numbers = set()
+        # Logger por cliente
+        safe = "".join(ch for ch in nickname if ch.isalnum() or ch in ("-","_"))
+        self.logger = setup_json_logger(f"client-{safe}", f"logs/client_{safe}.ndjson")
 
     def _send(self, typ, payload):
         self.seq_c += 1
@@ -26,6 +29,8 @@ class BingoClient:
             "payload": payload or {}
         }
         send_json(self.sock, msg)
+        log_event(self.logger, ev="tx", type=typ, msg_id=msg["msg_id"], seq=msg["seq"],
+                  game_id=self.game_id, player_id=self.player_id, payload=payload)        
         return msg
 
     def _ack(self, msg_id_ref: str):
@@ -45,29 +50,41 @@ class BingoClient:
             msgs = recv_json_lines(self.sock)
             if msgs is None:
                 print("[cli] conexión cerrada por el servidor")
+                log_event(self.logger, ev="conn_closed")
                 return
             msgs = msgs or []
             for m in msgs:
                 typ = m.get("type")
                 payload = m.get("payload", {})
                 mid = m.get("msg_id")
+                
                 if typ == "WELCOME":
                     self.game_id = m.get("game_id")
+                    log_event(self.logger, ev="rx", type="WELCOME", payload=payload)                    
+                    
                 elif typ == "JOIN_OK":
                     self.player_id = payload.get("player_id")
                     if mid: self._ack(mid)
+                    log_event(self.logger, ev="rx", type="JOIN_OK", msg_id=mid, payload=payload)  
                     print(f">> Te uniste al juego {self.game_id} con ID: {self.player_id}")
-                    print(f'>> Bienvenido, {self.nickname}!')
+                    print(f'>> Bienvenido, {self.nickname}!')                  
+                    
                 elif typ == "START":
                     if mid: self._ack(mid)
+                    log_event(self.logger, ev="rx", type="START", msg_id=mid)
                     print(">> La partida ha comenzado!")
+                    
                 elif typ == "CARD":
                     self.matrix = payload.get("matrix")
                     if mid: self._ack(mid)
+                    log_event(self.logger, ev="rx", type="CARD", msg_id=mid, size=len(self.matrix or []))
                     print(">> Recibiste tu cartón:")
                     self.show_card()
+                    
                 elif typ == "DRAW":
                     val = payload.get("value")
+                    log_event(self.logger, ev="rx", type="DRAW", msg_id=mid, value=val,
+                              draw_n=payload.get("draw_n"))
                     print(f">> Número sacado: {val}")
                     draw_n = payload.get("draw_n")
                     self.draws.append((val, draw_n))
@@ -81,15 +98,19 @@ class BingoClient:
                     if self.check_winner():
                         print("\n >> ¡¡¡ BINGO !!! ¡ENVIANDO VICTORIA!")
                         self._send("BINGO", {})
+                        log_event(self.logger, ev="bingo_send")
                     
                 elif typ == "RESULT":
                     if mid: self._ack(mid)
+                    log_event(self.logger, ev="rx", type="RESULT", msg_id=mid, payload=payload)
                     print("Resultado de la partida:")
                     winner = payload.get("winner", {})
                     print(f" >> Ganador: {winner.get('nickname')}\n    (ID: {winner.get('player_id')})")
                     print(f" >> Victoria en {len(self.draws)} números.")
+                    
                 elif typ == "GAME_OVER":
                     if mid: self._ack(mid)
+                    log_event(self.logger, ev="rx", type="GAME_OVER", msg_id=mid)                    
                     print("GAME OVER")
                     return
 

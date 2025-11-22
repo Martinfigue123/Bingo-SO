@@ -1,0 +1,287 @@
+{"ev":"server_start","host":"localhost","port":5000,"game_id":"cb67426b-1962-4819-9f54-7ed2c4a70106","max_players":3,"ts":1763779694}
+{"ev":"client_accept","addr":"('127.0.0.1', 58819)","ts":1763779704}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":null,"type":"WELCOME","critical":false,"msg_id":"977e415d-77a5-4f92-baf0-774836e395cb","seq":1,"payload":{"max_players":3,"win_patterns":["ROW","COL","DIAG"]},"ts":1763779704}
+{"ev":"rx","from_":"('127.0.0.1', 58819)","type":"HELLO","ts":1763779704}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"JOIN_OK","critical":true,"msg_id":"24b9faed-2a6c-4b61-bbde-02d3a3fd7d23","seq":2,"payload":{"player_id":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","players":[{"id":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","nick":"Rudolph"}]},"ts":1763779704}
+{"ev":"create_join","nick":"Rudolph","addr":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","ts":1763779704}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"24b9faed-2a6c-4b61-bbde-02d3a3fd7d23","ts":1763779704}
+{"ev":"client_accept","addr":"('127.0.0.1', 58861)","ts":1763779717}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":null,"type":"WELCOME","critical":false,"msg_id":"3c7c713d-9d0f-44ff-a709-f559b4d272f6","seq":1,"payload":{"max_players":3,"win_patterns":["ROW","COL","DIAG"]},"ts":1763779717}
+{"ev":"rx","from_":"('127.0.0.1', 58861)","type":"HELLO","ts":1763779717}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"JOIN_OK","critical":true,"msg_id":"d41b3b81-62aa-4e12-82d0-19384fd166d2","seq":2,"payload":{"player_id":"c195e54c-d55f-4b8c-952a-568edb7c210d","players":[{"id":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","nick":"Rudolph"},{"id":"c195e54c-d55f-4b8c-952a-568edb7c210d","nick":"Martin"}]},"ts":1763779717}
+{"ev":"join","nick":"Martin","addr":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","ts":1763779717}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"d41b3b81-62aa-4e12-82d0-19384fd166d2","ts":1763779717}
+{"ev":"client_accept","addr":"('127.0.0.1', 58938)","ts":1763779729}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":null,"type":"WELCOME","critical":false,"msg_id":"0ea2a2c0-8842-4883-9e0e-823009389af0","seq":1,"payload":{"max_players":3,"win_patterns":["ROW","COL","DIAG"]},"ts":1763779729}
+{"ev":"rx","from_":"('127.0.0.1', 58938)","type":"HELLO","ts":1763779729}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"JOIN_OK","critical":true,"msg_id":"5c9251af-911d-4f88-867c-e95706ef52ea","seq":2,"payload":{"player_id":"a466c534-0bce-43bc-ac50-a48ec36a787b","players":[{"id":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","nick":"Rudolph"},{"id":"c195e54c-d55f-4b8c-952a-568edb7c210d","nick":"Martin"},{"id":"a466c534-0bce-43bc-ac50-a48ec36a787b","nick":"Batman"}]},"ts":1763779730}
+{"ev":"join","nick":"Batman","addr":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","ts":1763779730}
+{"ev":"autostart_trigger","players":3,"ts":1763779730}
+{"ev":"ack_retry","addr":"('127.0.0.1', 58938)","type":"JOIN_OK","msg_id":"5c9251af-911d-4f88-867c-e95706ef52ea","attempt":1,"ts":1763779732}
+{"ev":"game_start","game_id":"cb67426b-1962-4819-9f54-7ed2c4a70106","ts":1763779733}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"START","critical":true,"msg_id":"6f8c690d-9e78-4f9a-b5fb-2a8ad8d50fe8","seq":3,"payload":{"seed":637620735},"ts":1763779733}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"START","critical":true,"msg_id":"37e3758e-5054-4aa6-b477-737e57f4b1a9","seq":3,"payload":{"seed":637620735},"ts":1763779733}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"6f8c690d-9e78-4f9a-b5fb-2a8ad8d50fe8","ts":1763779733}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"37e3758e-5054-4aa6-b477-737e57f4b1a9","ts":1763779733}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"START","critical":true,"msg_id":"3167384d-3141-4b7f-9822-633799565af8","seq":3,"payload":{"seed":637620735},"ts":1763779733}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"CARD","critical":true,"msg_id":"7b1e359e-ece4-43e9-b701-50fd454d0c26","seq":4,"payload":{"matrix":[[35,36,29,61,59],[3,41,43,56,45],[4,51,27,54,48],[52,22,14,15,38],[30,11,7,32,16]],"size":5,"range":[1,75]},"ts":1763779734}
+{"ev":"card_tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","ts":1763779734}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"CARD","critical":true,"msg_id":"8427ecf1-7bcb-40f3-a92a-6549229f9359","seq":4,"payload":{"matrix":[[43,27,33,17,70],[58,65,53,72,34],[61,40,67,41,26],[44,32,30,46,6],[69,45,35,64,38]],"size":5,"range":[1,75]},"ts":1763779734}
+{"ev":"card_tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","ts":1763779734}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"7b1e359e-ece4-43e9-b701-50fd454d0c26","ts":1763779734}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"CARD","critical":true,"msg_id":"8dc8248b-36c5-47a9-963f-33cd82b10a72","seq":4,"payload":{"matrix":[[7,18,37,20,50],[48,70,24,72,17],[34,31,27,29,33],[13,60,57,47,71],[51,4,45,15,42]],"size":5,"range":[1,75]},"ts":1763779734}
+{"ev":"card_tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","ts":1763779734}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"8427ecf1-7bcb-40f3-a92a-6549229f9359","ts":1763779734}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"5c9251af-911d-4f88-867c-e95706ef52ea","ts":1763779734}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"5c9251af-911d-4f88-867c-e95706ef52ea","ts":1763779734}
+{"ev":"draw_loop_start","ts":1763779734}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"3167384d-3141-4b7f-9822-633799565af8","ts":1763779734}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"8dc8248b-36c5-47a9-963f-33cd82b10a72","ts":1763779734}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"d145671b-e6c9-453a-89af-8332880ed1a8","seq":5,"payload":{"value":61,"draw_n":1},"ts":1763779735}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"2964266e-dd2d-436d-a4eb-57da1d44071d","seq":5,"payload":{"value":61,"draw_n":1},"ts":1763779735}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"d145671b-e6c9-453a-89af-8332880ed1a8","ts":1763779735}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"2964266e-dd2d-436d-a4eb-57da1d44071d","ts":1763779735}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"1b4e323c-506a-4d89-bf04-d8fe711b1732","seq":5,"payload":{"value":61,"draw_n":1},"ts":1763779735}
+{"ev":"draw","value":61,"draw_n":1,"ts":1763779735}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"1b4e323c-506a-4d89-bf04-d8fe711b1732","ts":1763779735}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"5c7d6404-6221-492f-ba60-bfb4995464d8","seq":6,"payload":{"value":21,"draw_n":2},"ts":1763779736}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"c159ad32-10a2-4855-b642-22e3c1d34ba9","seq":6,"payload":{"value":21,"draw_n":2},"ts":1763779736}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"f93bd6c5-e771-4419-bc62-227bcc2ab236","seq":6,"payload":{"value":21,"draw_n":2},"ts":1763779736}
+{"ev":"draw","value":21,"draw_n":2,"ts":1763779736}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"5c7d6404-6221-492f-ba60-bfb4995464d8","ts":1763779736}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"f93bd6c5-e771-4419-bc62-227bcc2ab236","ts":1763779736}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"c159ad32-10a2-4855-b642-22e3c1d34ba9","ts":1763779736}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"92ce0069-f031-47e0-9764-e674b97444d0","seq":7,"payload":{"value":40,"draw_n":3},"ts":1763779737}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"92ce0069-f031-47e0-9764-e674b97444d0","ts":1763779737}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"e57ffdc2-ae91-4111-8d88-f8f4f5f110d3","seq":7,"payload":{"value":40,"draw_n":3},"ts":1763779737}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"e57ffdc2-ae91-4111-8d88-f8f4f5f110d3","ts":1763779737}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"120d06b1-f45d-42db-a501-50dcc6267176","seq":7,"payload":{"value":40,"draw_n":3},"ts":1763779737}
+{"ev":"draw","value":40,"draw_n":3,"ts":1763779737}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"120d06b1-f45d-42db-a501-50dcc6267176","ts":1763779737}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"2127ec8a-756e-4890-a9d8-a8d62801534a","seq":8,"payload":{"value":64,"draw_n":4},"ts":1763779738}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"659b9674-4255-4fc7-8fd6-adfc9e795c3f","seq":8,"payload":{"value":64,"draw_n":4},"ts":1763779738}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"2127ec8a-756e-4890-a9d8-a8d62801534a","ts":1763779738}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"659b9674-4255-4fc7-8fd6-adfc9e795c3f","ts":1763779738}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"6a69b904-6f89-4c8f-bd46-b74e820d5d7b","seq":8,"payload":{"value":64,"draw_n":4},"ts":1763779738}
+{"ev":"draw","value":64,"draw_n":4,"ts":1763779738}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"6a69b904-6f89-4c8f-bd46-b74e820d5d7b","ts":1763779738}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"e0432df9-e936-4589-bb3a-8388acf1f38d","seq":9,"payload":{"value":11,"draw_n":5},"ts":1763779739}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"bf78eb75-dbda-48ab-ad57-b403b767b2e4","seq":9,"payload":{"value":11,"draw_n":5},"ts":1763779739}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"64b513e0-472f-4519-b2b6-5938743baf46","seq":9,"payload":{"value":11,"draw_n":5},"ts":1763779739}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"e0432df9-e936-4589-bb3a-8388acf1f38d","ts":1763779739}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"64b513e0-472f-4519-b2b6-5938743baf46","ts":1763779739}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"bf78eb75-dbda-48ab-ad57-b403b767b2e4","ts":1763779739}
+{"ev":"draw","value":11,"draw_n":5,"ts":1763779739}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"ce7207f9-15a2-4738-a38d-ff691c3d0f69","seq":10,"payload":{"value":6,"draw_n":6},"ts":1763779740}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"ce7207f9-15a2-4738-a38d-ff691c3d0f69","ts":1763779740}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"96dd1301-b5ba-4794-9b6f-454fcb7f4298","seq":10,"payload":{"value":6,"draw_n":6},"ts":1763779740}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"12f60546-f458-4461-b068-f8025483786c","seq":10,"payload":{"value":6,"draw_n":6},"ts":1763779740}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"96dd1301-b5ba-4794-9b6f-454fcb7f4298","ts":1763779740}
+{"ev":"draw","value":6,"draw_n":6,"ts":1763779740}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"12f60546-f458-4461-b068-f8025483786c","ts":1763779740}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"40bb78e3-c7fb-48d7-8f85-47a056a49d90","seq":11,"payload":{"value":72,"draw_n":7},"ts":1763779741}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"58b596d2-1952-4206-b181-553f44741248","seq":11,"payload":{"value":72,"draw_n":7},"ts":1763779741}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"54782355-6b8c-4bf9-a8fb-c65d878342e9","seq":11,"payload":{"value":72,"draw_n":7},"ts":1763779741}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"40bb78e3-c7fb-48d7-8f85-47a056a49d90","ts":1763779741}
+{"ev":"draw","value":72,"draw_n":7,"ts":1763779741}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"58b596d2-1952-4206-b181-553f44741248","ts":1763779741}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"54782355-6b8c-4bf9-a8fb-c65d878342e9","ts":1763779741}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"4dc732f1-7c26-4474-805a-4f5702e4fbfa","seq":12,"payload":{"value":4,"draw_n":8},"ts":1763779742}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"0bba37a4-31ae-4042-a343-d3a09380919a","seq":12,"payload":{"value":4,"draw_n":8},"ts":1763779742}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"6d721c53-9f06-4276-bc31-cf101b0075df","seq":12,"payload":{"value":4,"draw_n":8},"ts":1763779742}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"4dc732f1-7c26-4474-805a-4f5702e4fbfa","ts":1763779742}
+{"ev":"draw","value":4,"draw_n":8,"ts":1763779742}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"6d721c53-9f06-4276-bc31-cf101b0075df","ts":1763779742}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"0bba37a4-31ae-4042-a343-d3a09380919a","ts":1763779742}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"47d5dd82-6090-48a3-8c43-05cfa58bd39f","seq":13,"payload":{"value":36,"draw_n":9},"ts":1763779743}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"b0e0b5d3-c097-4a0c-b32b-cd54f72c49c1","seq":13,"payload":{"value":36,"draw_n":9},"ts":1763779743}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"162699f6-ed6a-4006-8f2c-5aa67218de10","seq":13,"payload":{"value":36,"draw_n":9},"ts":1763779743}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"47d5dd82-6090-48a3-8c43-05cfa58bd39f","ts":1763779743}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"b0e0b5d3-c097-4a0c-b32b-cd54f72c49c1","ts":1763779743}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"162699f6-ed6a-4006-8f2c-5aa67218de10","ts":1763779743}
+{"ev":"draw","value":36,"draw_n":9,"ts":1763779743}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"5ba21f7a-54c4-46cc-9a9f-8f76e6131964","seq":14,"payload":{"value":15,"draw_n":10},"ts":1763779744}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"64eb71f4-c6a6-49f6-9b74-8b17307a6e8c","seq":14,"payload":{"value":15,"draw_n":10},"ts":1763779744}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"c4b0648f-2a89-4415-8b07-0b2ce9f8e5d7","seq":14,"payload":{"value":15,"draw_n":10},"ts":1763779744}
+{"ev":"draw","value":15,"draw_n":10,"ts":1763779744}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"64eb71f4-c6a6-49f6-9b74-8b17307a6e8c","ts":1763779744}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"c4b0648f-2a89-4415-8b07-0b2ce9f8e5d7","ts":1763779744}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"5ba21f7a-54c4-46cc-9a9f-8f76e6131964","ts":1763779744}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"99627bdc-1580-4f6d-bced-cfd51450a2c5","seq":15,"payload":{"value":29,"draw_n":11},"ts":1763779745}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"e84299bd-0780-4847-9ae9-60d7cb35875a","seq":15,"payload":{"value":29,"draw_n":11},"ts":1763779745}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"6d02654f-734f-4749-93f3-d5cbe1a81605","seq":15,"payload":{"value":29,"draw_n":11},"ts":1763779745}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"99627bdc-1580-4f6d-bced-cfd51450a2c5","ts":1763779745}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"6d02654f-734f-4749-93f3-d5cbe1a81605","ts":1763779745}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"e84299bd-0780-4847-9ae9-60d7cb35875a","ts":1763779745}
+{"ev":"draw","value":29,"draw_n":11,"ts":1763779745}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"aca73f3c-1f36-4204-be26-25b3e08486cb","seq":16,"payload":{"value":68,"draw_n":12},"ts":1763779746}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"9d62b8bd-2759-41a9-a986-d2346e45eb86","seq":16,"payload":{"value":68,"draw_n":12},"ts":1763779746}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"c523f456-f14d-4efa-8b39-3bfe599e666b","seq":16,"payload":{"value":68,"draw_n":12},"ts":1763779746}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"aca73f3c-1f36-4204-be26-25b3e08486cb","ts":1763779746}
+{"ev":"draw","value":68,"draw_n":12,"ts":1763779746}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"9d62b8bd-2759-41a9-a986-d2346e45eb86","ts":1763779746}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"c523f456-f14d-4efa-8b39-3bfe599e666b","ts":1763779746}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"0ff57beb-4606-47fa-927e-366a2b76d3c7","seq":17,"payload":{"value":18,"draw_n":13},"ts":1763779747}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"c6bddcbe-2aed-4560-88be-b2c4de320f6f","seq":17,"payload":{"value":18,"draw_n":13},"ts":1763779747}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"76d1c02d-2710-455a-8048-eed1cc30607c","seq":17,"payload":{"value":18,"draw_n":13},"ts":1763779747}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"0ff57beb-4606-47fa-927e-366a2b76d3c7","ts":1763779747}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"76d1c02d-2710-455a-8048-eed1cc30607c","ts":1763779747}
+{"ev":"draw","value":18,"draw_n":13,"ts":1763779747}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"c6bddcbe-2aed-4560-88be-b2c4de320f6f","ts":1763779747}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"120aaf2a-c548-4df3-888f-b6cd8e4cccfb","seq":18,"payload":{"value":13,"draw_n":14},"ts":1763779748}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"757fa0a8-f741-4cf9-b3f0-b93f6bc4a41d","seq":18,"payload":{"value":13,"draw_n":14},"ts":1763779748}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"109e4bfd-f7ba-47df-bad5-344158e2a33e","seq":18,"payload":{"value":13,"draw_n":14},"ts":1763779748}
+{"ev":"draw","value":13,"draw_n":14,"ts":1763779748}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"120aaf2a-c548-4df3-888f-b6cd8e4cccfb","ts":1763779748}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"109e4bfd-f7ba-47df-bad5-344158e2a33e","ts":1763779748}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"757fa0a8-f741-4cf9-b3f0-b93f6bc4a41d","ts":1763779748}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"dff56877-a631-4782-a422-6e8638e55f62","seq":19,"payload":{"value":56,"draw_n":15},"ts":1763779749}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"39a89c13-e10c-4f4c-8309-9d02e745171a","seq":19,"payload":{"value":56,"draw_n":15},"ts":1763779749}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"96d4d4c1-9508-4d87-9990-30f52cc88646","seq":19,"payload":{"value":56,"draw_n":15},"ts":1763779749}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"dff56877-a631-4782-a422-6e8638e55f62","ts":1763779749}
+{"ev":"draw","value":56,"draw_n":15,"ts":1763779749}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"39a89c13-e10c-4f4c-8309-9d02e745171a","ts":1763779749}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"96d4d4c1-9508-4d87-9990-30f52cc88646","ts":1763779749}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"d311dc57-fee9-48dd-ab5a-c4150cf0c439","seq":20,"payload":{"value":51,"draw_n":16},"ts":1763779750}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"edcc8373-c4b0-40c6-8bc5-717f905355b9","seq":20,"payload":{"value":51,"draw_n":16},"ts":1763779750}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"a17cb932-f1b4-4750-bce2-9e7ba32d362d","seq":20,"payload":{"value":51,"draw_n":16},"ts":1763779750}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"edcc8373-c4b0-40c6-8bc5-717f905355b9","ts":1763779750}
+{"ev":"draw","value":51,"draw_n":16,"ts":1763779750}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"a17cb932-f1b4-4750-bce2-9e7ba32d362d","ts":1763779750}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"d311dc57-fee9-48dd-ab5a-c4150cf0c439","ts":1763779750}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"8fec64fb-0809-4cf6-9ce3-e5c2242a1f76","seq":21,"payload":{"value":30,"draw_n":17},"ts":1763779751}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"aaa28364-b373-471e-84c1-c022222dd227","seq":21,"payload":{"value":30,"draw_n":17},"ts":1763779751}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"d4d9b49f-e1db-49cb-af7a-ab3a3bc2d496","seq":21,"payload":{"value":30,"draw_n":17},"ts":1763779751}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"aaa28364-b373-471e-84c1-c022222dd227","ts":1763779751}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"8fec64fb-0809-4cf6-9ce3-e5c2242a1f76","ts":1763779751}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"d4d9b49f-e1db-49cb-af7a-ab3a3bc2d496","ts":1763779751}
+{"ev":"draw","value":30,"draw_n":17,"ts":1763779751}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"fe1cea86-63cc-4345-b470-e190f32abfbd","seq":22,"payload":{"value":24,"draw_n":18},"ts":1763779752}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"3bb4625f-d866-45b4-b6c9-5479f74ba418","seq":22,"payload":{"value":24,"draw_n":18},"ts":1763779752}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"194fc850-166c-4ab7-82ee-123589b8c7be","seq":22,"payload":{"value":24,"draw_n":18},"ts":1763779752}
+{"ev":"draw","value":24,"draw_n":18,"ts":1763779752}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"3bb4625f-d866-45b4-b6c9-5479f74ba418","ts":1763779752}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"fe1cea86-63cc-4345-b470-e190f32abfbd","ts":1763779752}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"194fc850-166c-4ab7-82ee-123589b8c7be","ts":1763779752}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"f96f1c64-30f5-44cb-9fa6-e5cc08b2e3c4","seq":23,"payload":{"value":2,"draw_n":19},"ts":1763779753}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"fd6d2de3-e627-4919-862a-6e79de669a16","seq":23,"payload":{"value":2,"draw_n":19},"ts":1763779753}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"4164f020-878c-4c07-a059-cbcf45ca5dd6","seq":23,"payload":{"value":2,"draw_n":19},"ts":1763779753}
+{"ev":"draw","value":2,"draw_n":19,"ts":1763779753}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"4164f020-878c-4c07-a059-cbcf45ca5dd6","ts":1763779753}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"fd6d2de3-e627-4919-862a-6e79de669a16","ts":1763779753}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"f96f1c64-30f5-44cb-9fa6-e5cc08b2e3c4","ts":1763779753}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"66b48af1-c6f0-47fc-b123-265d5aaba07d","seq":24,"payload":{"value":63,"draw_n":20},"ts":1763779754}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"45c0ff18-855f-4860-9dd7-48665e0699e9","seq":24,"payload":{"value":63,"draw_n":20},"ts":1763779754}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"e9473f77-761a-4f4b-85f0-939b65a65351","seq":24,"payload":{"value":63,"draw_n":20},"ts":1763779754}
+{"ev":"draw","value":63,"draw_n":20,"ts":1763779754}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"66b48af1-c6f0-47fc-b123-265d5aaba07d","ts":1763779754}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"45c0ff18-855f-4860-9dd7-48665e0699e9","ts":1763779754}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"e9473f77-761a-4f4b-85f0-939b65a65351","ts":1763779754}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"30150816-64fd-4b9b-8cdd-9c09d70b56d8","seq":25,"payload":{"value":46,"draw_n":21},"ts":1763779755}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"6321e4b2-4fde-4b50-8146-ed8b36c8f4f0","seq":25,"payload":{"value":46,"draw_n":21},"ts":1763779755}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"b4a9b131-bab7-48fa-bba1-51c6a941b7fb","seq":25,"payload":{"value":46,"draw_n":21},"ts":1763779755}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"30150816-64fd-4b9b-8cdd-9c09d70b56d8","ts":1763779755}
+{"ev":"draw","value":46,"draw_n":21,"ts":1763779755}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"b4a9b131-bab7-48fa-bba1-51c6a941b7fb","ts":1763779755}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"6321e4b2-4fde-4b50-8146-ed8b36c8f4f0","ts":1763779755}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"c2c75e43-50b5-425e-b3e5-7c9cc1743930","seq":26,"payload":{"value":17,"draw_n":22},"ts":1763779756}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"90514ec0-0ee2-4a60-a760-2e6948fa48e8","seq":26,"payload":{"value":17,"draw_n":22},"ts":1763779756}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"c2c75e43-50b5-425e-b3e5-7c9cc1743930","ts":1763779756}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"2f5f4be4-bb2f-4e79-a8eb-3dfcb80b3e9d","seq":26,"payload":{"value":17,"draw_n":22},"ts":1763779756}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"2f5f4be4-bb2f-4e79-a8eb-3dfcb80b3e9d","ts":1763779756}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"90514ec0-0ee2-4a60-a760-2e6948fa48e8","ts":1763779756}
+{"ev":"draw","value":17,"draw_n":22,"ts":1763779756}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"7d042027-1da5-4fef-811b-8447b3a01ab1","seq":27,"payload":{"value":53,"draw_n":23},"ts":1763779757}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"cea18984-093a-45b8-963c-3e8c03c57ed4","seq":27,"payload":{"value":53,"draw_n":23},"ts":1763779757}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"300deba2-c1a9-4019-81b2-ac87525bf772","seq":27,"payload":{"value":53,"draw_n":23},"ts":1763779757}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"7d042027-1da5-4fef-811b-8447b3a01ab1","ts":1763779757}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"cea18984-093a-45b8-963c-3e8c03c57ed4","ts":1763779757}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"300deba2-c1a9-4019-81b2-ac87525bf772","ts":1763779757}
+{"ev":"draw","value":53,"draw_n":23,"ts":1763779757}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"8952e3d8-66f6-4889-97ad-c6e9c86dddb7","seq":28,"payload":{"value":37,"draw_n":24},"ts":1763779758}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"89158a1a-52b5-4d64-9e2b-837350842465","seq":28,"payload":{"value":37,"draw_n":24},"ts":1763779758}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"219246f5-414c-4515-a4c7-dddb3b272a5d","seq":28,"payload":{"value":37,"draw_n":24},"ts":1763779758}
+{"ev":"draw","value":37,"draw_n":24,"ts":1763779758}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"8952e3d8-66f6-4889-97ad-c6e9c86dddb7","ts":1763779758}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"89158a1a-52b5-4d64-9e2b-837350842465","ts":1763779758}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"219246f5-414c-4515-a4c7-dddb3b272a5d","ts":1763779758}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"f0955e9d-95c0-4048-adca-43527cf23b97","seq":29,"payload":{"value":20,"draw_n":25},"ts":1763779759}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"995b88d4-f563-4b74-93a1-8fe79907ae5a","seq":29,"payload":{"value":20,"draw_n":25},"ts":1763779759}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"7e06e2ee-a2df-4fbf-8d9a-e1d073e8ae21","seq":29,"payload":{"value":20,"draw_n":25},"ts":1763779759}
+{"ev":"draw","value":20,"draw_n":25,"ts":1763779759}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"f0955e9d-95c0-4048-adca-43527cf23b97","ts":1763779759}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"7e06e2ee-a2df-4fbf-8d9a-e1d073e8ae21","ts":1763779759}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"995b88d4-f563-4b74-93a1-8fe79907ae5a","ts":1763779759}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"9d1f0946-0694-4e08-966a-1500460ba09c","seq":30,"payload":{"value":3,"draw_n":26},"ts":1763779760}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"b9a08fc8-9fbb-4861-8df9-071149839288","seq":30,"payload":{"value":3,"draw_n":26},"ts":1763779760}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"9d1f0946-0694-4e08-966a-1500460ba09c","ts":1763779760}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"16fbc71d-05e1-4c33-99e2-99d5882c0990","seq":30,"payload":{"value":3,"draw_n":26},"ts":1763779760}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"b9a08fc8-9fbb-4861-8df9-071149839288","ts":1763779760}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"16fbc71d-05e1-4c33-99e2-99d5882c0990","ts":1763779760}
+{"ev":"draw","value":3,"draw_n":26,"ts":1763779760}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"ab7ac4be-90a9-4f80-9d36-3b9af34ce3d0","seq":31,"payload":{"value":74,"draw_n":27},"ts":1763779761}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"8f4d3bfa-af04-4096-b607-8bb74626d1b5","seq":31,"payload":{"value":74,"draw_n":27},"ts":1763779761}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"ab7ac4be-90a9-4f80-9d36-3b9af34ce3d0","ts":1763779761}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"8f4d3bfa-af04-4096-b607-8bb74626d1b5","ts":1763779761}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"b269162e-4ea7-4946-a2f7-9b7bb090af0a","seq":31,"payload":{"value":74,"draw_n":27},"ts":1763779761}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"b269162e-4ea7-4946-a2f7-9b7bb090af0a","ts":1763779761}
+{"ev":"draw","value":74,"draw_n":27,"ts":1763779761}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"6071f491-8f3f-470d-8c90-0d0567cd1f3a","seq":32,"payload":{"value":16,"draw_n":28},"ts":1763779762}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"a726f7f3-33b8-43e8-8c64-a4c7a4b4f098","seq":32,"payload":{"value":16,"draw_n":28},"ts":1763779762}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"6071f491-8f3f-470d-8c90-0d0567cd1f3a","ts":1763779762}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"a726f7f3-33b8-43e8-8c64-a4c7a4b4f098","ts":1763779762}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"94545e96-a3a3-4284-8f36-3637918e493a","seq":32,"payload":{"value":16,"draw_n":28},"ts":1763779762}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"94545e96-a3a3-4284-8f36-3637918e493a","ts":1763779762}
+{"ev":"draw","value":16,"draw_n":28,"ts":1763779762}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"850b0b27-5e43-4a83-b05c-fa9503c782ed","seq":33,"payload":{"value":34,"draw_n":29},"ts":1763779763}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"bbe99a09-cb1c-482f-9abc-ca6be830b87e","seq":33,"payload":{"value":34,"draw_n":29},"ts":1763779763}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"850b0b27-5e43-4a83-b05c-fa9503c782ed","ts":1763779763}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"47c5fd8e-5987-46e5-a7c5-c95453ebdf51","seq":33,"payload":{"value":34,"draw_n":29},"ts":1763779763}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"bbe99a09-cb1c-482f-9abc-ca6be830b87e","ts":1763779763}
+{"ev":"draw","value":34,"draw_n":29,"ts":1763779763}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"47c5fd8e-5987-46e5-a7c5-c95453ebdf51","ts":1763779763}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"632c1c63-b073-4080-a477-7291214a5d0f","seq":34,"payload":{"value":47,"draw_n":30},"ts":1763779764}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"db6e36d5-4c04-441f-a4e6-1e100589690c","seq":34,"payload":{"value":47,"draw_n":30},"ts":1763779764}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"632c1c63-b073-4080-a477-7291214a5d0f","ts":1763779764}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"050b961a-5f8a-4063-b77c-696f236476c3","seq":34,"payload":{"value":47,"draw_n":30},"ts":1763779764}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"db6e36d5-4c04-441f-a4e6-1e100589690c","ts":1763779764}
+{"ev":"draw","value":47,"draw_n":30,"ts":1763779764}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"050b961a-5f8a-4063-b77c-696f236476c3","ts":1763779764}
+{"ev":"bingo_claim","nick":"Batman","addr":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","ts":1763779764}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"RESULT","critical":true,"msg_id":"46a43fe5-87a4-4193-bfd8-ff94ae2e1484","seq":35,"payload":{"winner":{"player_id":"a466c534-0bce-43bc-ac50-a48ec36a787b","nickname":"Batman"},"summary":{"draws":30}},"ts":1763779764}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"RESULT","critical":true,"msg_id":"2b11e59f-ced5-4d3a-aef7-bbbaecc776cc","seq":35,"payload":{"winner":{"player_id":"a466c534-0bce-43bc-ac50-a48ec36a787b","nickname":"Batman"},"summary":{"draws":30}},"ts":1763779764}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"46a43fe5-87a4-4193-bfd8-ff94ae2e1484","ts":1763779764}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"2b11e59f-ced5-4d3a-aef7-bbbaecc776cc","ts":1763779764}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"RESULT","critical":true,"msg_id":"e7eb9ef6-fa3e-4521-8a2a-3a0368ab882f","seq":35,"payload":{"winner":{"player_id":"a466c534-0bce-43bc-ac50-a48ec36a787b","nickname":"Batman"},"summary":{"draws":30}},"ts":1763779764}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"GAME_OVER","critical":true,"msg_id":"e6cf7636-3005-45aa-be57-8abb5a372974","seq":36,"payload":{},"ts":1763779764}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"GAME_OVER","critical":true,"msg_id":"60585aa8-daa2-497a-baf2-81ffc27eb284","seq":36,"payload":{},"ts":1763779764}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58861)","msg_id":"60585aa8-daa2-497a-baf2-81ffc27eb284","ts":1763779764}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58819)","msg_id":"e6cf7636-3005-45aa-be57-8abb5a372974","ts":1763779764}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"GAME_OVER","critical":true,"msg_id":"17d162a9-d1a9-40b0-bd7a-a4a093fd1638","seq":36,"payload":{},"ts":1763779764}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"e7eb9ef6-fa3e-4521-8a2a-3a0368ab882f","ts":1763779764}
+{"ev":"ack_rx","addr":"('127.0.0.1', 58938)","msg_id":"17d162a9-d1a9-40b0-bd7a-a4a093fd1638","ts":1763779764}
+{"ev":"tx","to":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","type":"DRAW","critical":true,"msg_id":"d97a8c82-b68d-421b-8c65-b8fa0232b6f1","seq":37,"payload":{"value":41,"draw_n":31},"ts":1763779765}
+{"ev":"tx","to":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","type":"DRAW","critical":true,"msg_id":"8e89effe-113d-45d0-9ea4-14424fdbbaf5","seq":37,"payload":{"value":41,"draw_n":31},"ts":1763779765}
+{"ev":"tx","to":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","type":"DRAW","critical":true,"msg_id":"2d51d5c9-88b1-4ace-8cf9-376f4b7df13b","seq":37,"payload":{"value":41,"draw_n":31},"ts":1763779765}
+{"ev":"draw","value":41,"draw_n":31,"ts":1763779765}
+{"ev":"ack_retry","addr":"('127.0.0.1', 58819)","type":"DRAW","msg_id":"d97a8c82-b68d-421b-8c65-b8fa0232b6f1","attempt":1,"ts":1763779767}
+{"ev":"ack_retry","addr":"('127.0.0.1', 58861)","type":"DRAW","msg_id":"8e89effe-113d-45d0-9ea4-14424fdbbaf5","attempt":1,"ts":1763779767}
+{"ev":"ack_retry","addr":"('127.0.0.1', 58938)","type":"DRAW","msg_id":"2d51d5c9-88b1-4ace-8cf9-376f4b7df13b","attempt":1,"ts":1763779767}
+{"ev":"ack_retry","addr":"('127.0.0.1', 58819)","type":"DRAW","msg_id":"d97a8c82-b68d-421b-8c65-b8fa0232b6f1","attempt":2,"ts":1763779769}
+{"ev":"ack_retry","addr":"('127.0.0.1', 58861)","type":"DRAW","msg_id":"8e89effe-113d-45d0-9ea4-14424fdbbaf5","attempt":2,"ts":1763779769}
+{"ev":"ack_retry","addr":"('127.0.0.1', 58938)","type":"DRAW","msg_id":"2d51d5c9-88b1-4ace-8cf9-376f4b7df13b","attempt":2,"ts":1763779769}
+{"ev":"ack_retry","addr":"('127.0.0.1', 58819)","type":"DRAW","msg_id":"d97a8c82-b68d-421b-8c65-b8fa0232b6f1","attempt":3,"ts":1763779771}
+{"ev":"ack_retry","addr":"('127.0.0.1', 58861)","type":"DRAW","msg_id":"8e89effe-113d-45d0-9ea4-14424fdbbaf5","attempt":3,"ts":1763779771}
+{"ev":"ack_retry","addr":"('127.0.0.1', 58938)","type":"DRAW","msg_id":"2d51d5c9-88b1-4ace-8cf9-376f4b7df13b","attempt":3,"ts":1763779771}
+{"ev":"ack_retry","addr":"('127.0.0.1', 58819)","type":"DRAW","msg_id":"d97a8c82-b68d-421b-8c65-b8fa0232b6f1","attempt":4,"ts":1763779773}
+{"ev":"ack_retry","addr":"('127.0.0.1', 58861)","type":"DRAW","msg_id":"8e89effe-113d-45d0-9ea4-14424fdbbaf5","attempt":4,"ts":1763779773}
+{"ev":"ack_retry","addr":"('127.0.0.1', 58938)","type":"DRAW","msg_id":"2d51d5c9-88b1-4ace-8cf9-376f4b7df13b","attempt":4,"ts":1763779773}
+{"ev":"ack_retry","addr":"('127.0.0.1', 58819)","type":"DRAW","msg_id":"d97a8c82-b68d-421b-8c65-b8fa0232b6f1","attempt":5,"ts":1763779775}
+{"ev":"ack_retry","addr":"('127.0.0.1', 58861)","type":"DRAW","msg_id":"8e89effe-113d-45d0-9ea4-14424fdbbaf5","attempt":5,"ts":1763779775}
+{"ev":"ack_retry","addr":"('127.0.0.1', 58938)","type":"DRAW","msg_id":"2d51d5c9-88b1-4ace-8cf9-376f4b7df13b","attempt":5,"ts":1763779775}
+{"ev":"ack_drop","addr":"('127.0.0.1', 58819)","type":"DRAW","msg_id":"d97a8c82-b68d-421b-8c65-b8fa0232b6f1","ts":1763779777}
+{"ev":"client_closed","addr":"('127.0.0.1', 58819)","pid":"14b96f4d-9227-4c22-ba53-92f6399ae7f4","ts":1763779777}
+{"ev":"ack_drop","addr":"('127.0.0.1', 58861)","type":"DRAW","msg_id":"8e89effe-113d-45d0-9ea4-14424fdbbaf5","ts":1763779777}
+{"ev":"ack_drop","addr":"('127.0.0.1', 58938)","type":"DRAW","msg_id":"2d51d5c9-88b1-4ace-8cf9-376f4b7df13b","ts":1763779777}
+{"ev":"client_closed","addr":"('127.0.0.1', 58861)","pid":"c195e54c-d55f-4b8c-952a-568edb7c210d","ts":1763779777}
+{"ev":"client_closed","addr":"('127.0.0.1', 58938)","pid":"a466c534-0bce-43bc-ac50-a48ec36a787b","ts":1763779777}

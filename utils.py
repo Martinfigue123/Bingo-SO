@@ -1,7 +1,4 @@
-import socket
-import json
-import uuid
-import time
+import socket, json, time, uuid, os, logging
 
 HOST = 'localhost'
 PORT = 5000
@@ -50,3 +47,30 @@ def recv_json_lines(sock):
         start = nl + 1
     _RX_BUFFERS[fd] = buf[start:]  # guarda el resto (posible parcial)
     return msgs
+
+# Trazado
+
+_LOGGER = None
+def setup_json_logger(name: str, logfile: str):
+    # Crea (una sola vez) un logger de proceso que escribe a 'logfile'.
+
+    global _LOGGER
+    if _LOGGER:
+        return _LOGGER
+    os.makedirs(os.path.dirname(logfile), exist_ok=True)
+    logger = logging.getLogger(name)
+    logger.setLevel(logging.INFO)
+    fh = logging.FileHandler(logfile, encoding="utf-8")
+    fh.setLevel(logging.INFO)
+    # Formato "crudo" (dejamos el mensaje como JSON ya serializado)
+    fmt = logging.Formatter('%(message)s')
+    fh.setFormatter(fmt)
+    logger.addHandler(fh)
+    _LOGGER = logger
+    return logger
+
+def log_event(logger, **kv):
+    # Emite un registro como JSON en una sola línea (NDJSON).
+    
+    kv.setdefault("ts", now_ts())
+    logger.info(json.dumps(kv, separators=(",", ":"), ensure_ascii=False))
