@@ -1,38 +1,120 @@
-import socket
-import threading
-import time
-import uuid
-from utils import HOST, PORT, send_json, receive_json
+import sys, json, socket, threading, time
+from utils import send_json, recv_json_lines, new_id, now_ts
 
 class BingoClient:
-    def __init__(self):
+    def __init__(self, host, port, nickname):
+        self.host, self.port = host, port
+        self.nickname = nickname
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        try:
-            self.sock.connect((HOST, PORT))
-        except:
-            print("Error conectando al servidor.")
-            exit()
-            
-        self.running = True
-        self.my_card = []
-        self.marked_numbers = []
+        self.seq_c = 0
+        self.player_id = None
+        self.game_id = None
+        self.matrix = None
+        # self.draws keeps tuples (value, draw_n); drawn_numbers is a set de valores para comprobaciones rápidas
+        self.draws = []
+        self.drawn_numbers = set()
+
+    def _send(self, typ, payload):
+        self.seq_c += 1
+        msg = {
+            "type": typ,
+            "game_id": self.game_id,
+            "player_id": self.player_id,
+            "msg_id": new_id(),
+            "seq": self.seq_c,
+            "ts": now_ts(),
+            "payload": payload or {}
+        }
+        send_json(self.sock, msg)
+        return msg
+
+    def _ack(self, msg_id_ref: str):
+        self._send("ACK", {"msg_id_ref": msg_id_ref})
+
+    def run(self):
+        self.sock.connect((self.host, self.port))
+        threading.Thread(target=self._rx, daemon=True).start()
+        # Ejemplo simple: el cliente entra con HELLO y JOIN
+        self._send("HELLO", {"proto": "bingo-x/1.0", "nickname": self.nickname})
+        time.sleep(0.1)
+        self._send("JOIN", {"nickname": self.nickname})
+        # loop de consola si lo tienes
+
+    def _rx(self):
+        while True:
+            msgs = recv_json_lines(self.sock)
+            if msgs is None:
+                print("[cli] conexión cerrada por el servidor")
+                return
+            msgs = msgs or []
+            for m in msgs:
+                typ = m.get("type")
+                payload = m.get("payload", {})
+                mid = m.get("msg_id")
+                if typ == "WELCOME":
+                    self.game_id = m.get("game_id")
+                elif typ == "JOIN_OK":
+                    self.player_id = payload.get("player_id")
+                    if mid: self._ack(mid)
+                    print(f">> Te uniste al juego {self.game_id} con ID: {self.player_id}")
+                    print(f'>> Bienvenido, {self.nickname}!')
+                elif typ == "START":
+                    if mid: self._ack(mid)
+                    print(">> La partida ha comenzado!")
+                elif typ == "CARD":
+                    self.matrix = payload.get("matrix")
+                    if mid: self._ack(mid)
+                    print(">> Recibiste tu cartón:")
+                    self.show_card()
+                elif typ == "DRAW":
+                    val = payload.get("value")
+                    print(f">> Número sacado: {val}")
+                    draw_n = payload.get("draw_n")
+                    self.draws.append((val, draw_n))
+                    # mantener también un conjunto de valores sacados para comprobaciones de pertenencia
+                    if val is not None:
+                        self.drawn_numbers.add(val)
+                    if mid: self._ack(mid)
+                    self.show_card()
+
+                    # --- VERIFICAR VICTORIA ---
+                    if self.check_winner():
+                        print("\n >> ¡¡¡ BINGO !!! ¡ENVIANDO VICTORIA!")
+                        self._send("BINGO", {})
+                    
+                elif typ == "RESULT":
+                    if mid: self._ack(mid)
+                    print("Resultado de la partida:")
+                    winner = payload.get("winner", {})
+                    print(f" >> Ganador: {winner.get('nickname')}\n    (ID: {winner.get('player_id')})")
+                    print(f" >> Victoria en {len(self.draws)} números.")
+                elif typ == "GAME_OVER":
+                    if mid: self._ack(mid)
+                    print("GAME OVER")
+                    return
+
+# Funciones de JUEGO
 
     def check_winner(self):
         """Revisa si completó línea, columna o diagonal"""
-        if not self.my_card: return False
+        if not self.matrix: return False
         
         # Filas
-        for row in self.my_card:
-            if all(num in self.marked_numbers for num in row): return True
+        for row in self.matrix:
+            if all(num in self.drawn_numbers for num in row):
+                return True
         # Columnas
         for col_idx in range(5):
-            col = [self.my_card[r][col_idx] for r in range(5)]
-            if all(num in self.marked_numbers for num in col): return True
+            col = [self.matrix[r][col_idx] for r in range(5)]
+            if all(num in self.drawn_numbers for num in col):
+                return True
         # Diagonales
-        d1 = [self.my_card[i][i] for i in range(5)]
-        if all(num in self.marked_numbers for num in d1): return True
-        d2 = [self.my_card[i][4-i] for i in range(5)]
-        if all(num in self.marked_numbers for num in d2): return True
+        d1 = [self.matrix[i][i] for i in range(5)]
+        if all(num in self.drawn_numbers for num in d1):
+            return True
+        d2 = [self.matrix[i][4-i] for i in range(5)]
+        if all(num in self.drawn_numbers for num in d2):
+            return True
             
         return False
 
@@ -40,97 +122,47 @@ class BingoClient:
         print("\n" + "="*30)
         print(" B     I     N     G     O")
         print("="*30)
-        for row in self.my_card:
+        for row in self.matrix:
             line = ""
             for num in row:
-                if num in self.marked_numbers:
+                if num in self.drawn_numbers:
                     line += " [XX] "
                 else:
                     line += f"  {num:02d}  "
             print(line)
         print("="*30 + "\n")
 
-    def receive_messages(self):
-        while self.running:
-            msg = receive_json(self.sock)
-            if msg:
-                tipo = msg.get("type")
-                payload = msg.get("payload", {})
-
-                if tipo == "WELCOME":
-                    print(f">>> [SISTEMA] Sala creada. Esperando jugadores...")
-                elif tipo == "JOIN_OK":
-                    print(f">>> [SISTEMA] Unido exitosamente.")
-                elif tipo == "START":
-                    print(f"\n>>> [JUEGO] ¡COMENZÓ LA PARTIDA!")
-                elif tipo == "CARD":
-                    self.my_card = payload["matrix"]
-                    self.marked_numbers = []
-                    print("\n>>> [JUEGO] ¡Cartón recibido!")
-                    self.show_card()
-                
-                elif tipo == "DRAW":
-                    num = payload["value"]
-                    print(f"\n>>> [SORTEO] Salió el {num}")
-                    self.marked_numbers.append(num)
-                    self.show_card()
-                    
-                    # --- VERIFICAR VICTORIA ---
-                    if self.check_winner():
-                        print("\n!!! BINGO !!! ¡ENVIANDO VICTORIA!")
-                        bingo_msg = {
-                            "type": "BINGO",
-                            "msg_id": str(uuid.uuid4()),
-                            "payload": {"card": self.my_card}
-                        }
-                        send_json(self.sock, bingo_msg)
-
-                elif tipo == "RESULT":
-                    print(f"\n>>> [FIN] ¡GANÓ {payload.get('winner')}!")
-                elif tipo == "GAME_OVER":
-                    print(">>> [SISTEMA] Juego terminado.")
-                    self.running = False
-            else:
-                self.running = False
-                break
-
-    def start(self):
-        threading.Thread(target=self.receive_messages, daemon=True).start()
-        print(f"Conectado a {HOST}:{PORT}")
-        print("Comandos: CREATE, JOIN <nombre>, EXIT")
-
-        while self.running:
-            try:
-                inp = input()
-                if not inp: continue
-                parts = inp.split()
-                cmd = parts[0].upper()
-                
-                msg_type = ""
-                payload = {}
-                
-                if cmd == "CREATE":
-                    msg_type = "CREATE"
-                    payload = {"max_players": 3}
-                elif cmd == "JOIN":
-                    nick = parts[1] if len(parts) > 1 else "Jugador"
-                    msg_type = "JOIN"
-                    payload = {"nickname": nick}
-                elif cmd == "EXIT":
-                    self.running = False
-                    break
-                else:
-                    continue
-                
-                send_json(self.sock, {
-                    "type": msg_type,
-                    "msg_id": str(uuid.uuid4()),
-                    "payload": payload
-                })
-            except:
-                break
-        self.sock.close()
+# MAIN
 
 if __name__ == "__main__":
-    client = BingoClient()
-    client.start()
+    if len(sys.argv) < 4 or len(sys.argv) > 5:
+        print(f"Uso: {sys.argv[0]} HOST PORT NICKNAME [mod]")
+        sys.exit(1)
+    host = sys.argv[1]
+    port = int(sys.argv[2])
+    nickname = sys.argv[3]
+    is_mod = (len(sys.argv) == 5 and sys.argv[4].lower() == "mod")
+    client = BingoClient(host, port, nickname)
+    client.sock.connect((host, port))
+    threading.Thread(target=client._rx, daemon=True).start()
+    # Handshake
+    client._send("HELLO", {"proto": "bingo-x/1.0", "nickname": nickname})
+    time.sleep(0.1)
+    if is_mod:
+        # El moderador crea sala y queda auto-inscrito según el server
+        client._send("CREATE", {"nickname": nickname})
+        print(">> Escribe 'start' para iniciar la partida, 'quit' para salir")
+    else:
+        client._send("JOIN", {"nickname": nickname})
+
+    # Consola mínima
+    try:
+        while True:
+            cmd = input().strip().lower()
+            if cmd == "start" and is_mod:
+                client._send("START", {})
+            elif cmd == "quit":
+                break
+    except KeyboardInterrupt:
+        pass
+        
